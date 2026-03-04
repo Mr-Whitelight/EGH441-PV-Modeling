@@ -1,0 +1,11 @@
+function [Iph,Vt,Rs,Io]=Q1(Impp,Vmpp,Isc,Voc)
+% This function determines the 4 paramters for the
+% four parameter model from Impp, Vmpp, Isc, Voc
+
+Iph = Isc; 
+Vt = ((2*Vmpp-Voc)*(Isc - Impp))/(Impp + (Isc -Impp) ...
+    *log((Isc - Impp))/Isc);
+Rs = (Vt*log((Isc - Impp)/Isc) + Voc - Vmpp)/Impp;
+Io = Isc/(exp(Voc/Vt));
+
+end
