@@ -1,0 +1,34 @@
+clear all
+close all 
+clc
+
+Vmpp = 35.5;
+Voc = 44;
+Impp = 4.78;
+Isc = 5.3; 
+
+[Iph,Vt,Rs,Io]=Q1(Impp,Vmpp,Isc,Voc);
+
+points = 100;
+V = linspace(0,Voc,points);
+I = zeros(1,100);
+
+I = Isc - Io*(exp((V + I.*Rs)./Vt)-1);
+
+figure
+hold on
+box on
+grid on
+plot(V,I,"Linewidth",1.5,"Color",'r')
+xlabel("Voltage (V)" ,"FontSize",20,'FontWeight','bold')
+ylabel("Current (A)","FontSize",20,'FontWeight','bold')
+hold off
+
+figure
+hold on
+box on
+grid on
+plot(V,V.*I,"Linewidth",1.5,"Color",'r')
+xlabel("Voltage (V)","FontSize",20,'FontWeight','bold')
+ylabel("Power (W)","FontSize",20,'FontWeight','bold')
+hold off
